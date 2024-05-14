@@ -1,0 +1,100 @@
+//In this example front is used for deletion (dequeue) & rear is used for deletion (Enqueue)*/ 
+#include<stdio.h>
+
+#define SIZE 5
+int q[SIZE],front=-1,rear=-1,choice = 0;
+enum QUEUQE{ENQ=1,DEQ,DISP,EXIT};
+
+void enq(); void deq(); void disp();void enq_r();
+void main ()  
+{  
+        
+    printf("*********Queue operations using array*********");  
+  
+printf("\n----------------------------------------------\n");  
+    do 
+    {  
+        printf("Chose one from the below options...\n");  
+        printf("\n1.ENQUEUE\t2.DEQUEUE\t3.DISPLAY\t4.EXIT");  
+		printf("\nEnter your choice?");        
+        scanf("%d",&choice);  
+        switch(choice)  
+        {  
+            case ENQ:  
+            {   
+                enq();  
+                break;  
+            }  
+            case DEQ:  
+            {  
+                deq();  
+                break;  
+            }  
+            case DISP:  
+            {  
+                disp();  
+                break;  
+            }  
+            case EXIT:   
+            {  
+                printf("Exiting....\n");  
+                break;   
+            }  
+			 
+            default:  
+            {  
+                printf("Please Enter valid choice ");  
+            }   
+        } 
+    }while(choice != 4);   
+}   
+
+void enq()
+{
+	if(rear==SIZE-1)
+	{
+		printf("Queue is full\n");
+	}
+	else
+	{
+		int val;
+		printf("Enter an element to queue?");
+		scanf("%d",&val);
+		if(front==-1)
+			front = 0;
+		rear++;
+		q[rear] = val;
+	}
+}
+
+void deq()
+{
+	if(front == -1 || front > rear)
+	{
+		printf("Queue is empty\n");
+	}
+	else
+	{
+		printf("%d is removed from queue\n",q[front]);
+		front++;
+		if(front == SIZE)
+		{
+			rear = front = -1;
+		}
+	}
+}
+
+void disp()
+{
+	if(front == -1 || front > rear)
+	{
+		printf("Queue is empty\n");
+	}
+	else
+	{
+		int i;
+		printf("Displaying queue elements\n");
+		for(i=front;i<=rear;i++)
+			printf("%d\n",q[i]);
+	}
+}
